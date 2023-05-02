@@ -6,7 +6,6 @@ const reqValidator = require("../../middleware/req-validation");
 const EmployeeRepo = require("../../repo/employee");
 const CurrentSalaryRepo = require("../../repo/current-salary");
 const OldSalaryRepo = require("../../repo/old-salary");
-const {JWT_SIGN_KEY} = require("../../config");
 const Password = require("../../util/Password");
 const BadRequestError = require("../../errors/BadRequestError");
 const Pool = require("../../util/Pool");

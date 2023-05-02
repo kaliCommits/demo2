@@ -4,7 +4,6 @@ const Jwt = require("jsonwebtoken");
 const {body} = require("express-validator");
 const reqValidator = require("../../middleware/req-validation");
 const AdminRepo = require("../../repo/admin");
-const {JWT_SIGN_KEY} = require("../../config");
 const Password = require("../../util/Password");
 const BadRequestError = require("../../errors/BadRequestError");
 
