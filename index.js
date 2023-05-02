@@ -62,8 +62,7 @@ app.use(
       signed: false,
       secure: true,
       sameSite: "none",
-      domain:"https://localhost:3000",
-      httpOnly:false,
+      domain:"localhost:3000",
     })
   );
 
