@@ -137,6 +137,7 @@ const init = async()=>{
 }
 
 const initProd = async () => {
+  console.log("hello");
   try {
     await pool.connect({
       connectionString: process.env.DBSTR,
@@ -153,7 +154,7 @@ const initProd = async () => {
   }
 };
 
-if(process.env.NODE_ENV === "production "){
+if(process.env.NODE_ENV === "production"){
   initProd();
 }else{
   init();
