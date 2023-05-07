@@ -8,10 +8,10 @@ const Password = require("../../util/Password");
 const BadRequestError = require("../../errors/BadRequestError");
 
 router.put("/api/v1/employee/:id",[
-    body("name").trim().isLength({max:20}).notEmpty(),
-    body("email").trim().isEmail().notEmpty(),
-    body("phone").trim().isLength(10).notEmpty(),
-    body("category").trim().notEmpty(),
+    body("name").notEmpty().trim().isLength({ max: 20 }),
+    body("email").notEmpty().trim().isEmail(),
+    body("phone").notEmpty().trim().isLength(10),
+    body("category").notEmpty().trim(),
 ],reqValidator,async(req,res,next)=>{
     console.log(req.body);
     const obj = req.body;
@@ -30,3 +30,9 @@ router.put("/api/v1/employee/:id",[
 });
 
 module.exports = router;
+
+
+   
+   
+   
+    

@@ -9,12 +9,15 @@ class EmployeeRepo{
     }
 
     static async all(){
-        const ans = await pool.query(`SELECT name,email,phone,category,admin_id,createdAt,updatedAt FROM employee`,[]);
+        const ans = await pool.query(`SELECT e.id,name,email,phone,category,salary,e.createdAt,e.updatedAt FROM employee AS e JOIN current_salary as c ON e.id=c.employee_id`,[]);
         return ans;
     }
 
     static async single(id){
-        const ans = await pool.query(`SELECT id,name,email,phone,category,admin_id,createdAt,updatedAt FROM employee WHERE id=$1;`,[id]);
+        const ans = await pool.query(
+          `SELECT e.id,name,email,phone,category,salary,e.createdAt,e.updatedAt FROM employee AS e JOIN current_salary as c ON e.id=c.employee_id WHERE e.id=$1;`,
+          [id]
+        );
         return ans;
     }
     static async update(name,email,phone,category,date,id){

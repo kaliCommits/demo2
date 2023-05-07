@@ -1,7 +1,7 @@
 const CustomError = require("./CustomError");
 
 class BadRequestError extends CustomError {
-  statusCode = 200;
+  statusCode = 400 ;
   str;
   constructor(msg) {
     super(msg);

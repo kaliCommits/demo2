@@ -40,7 +40,7 @@ const penaltyAll = require("./routes/penalty/all");
 
 const corsOptions = {
     // origin: "https://drainagemonitor.herokuapp.com",
-    origin: "https://localhost:3000",
+    origin: process.env.NODE_ENV === "production"?"":"http://localhost:3000",
     credentials: true,
     optionsSuccessStatus: 200, // For legacy browser support
 };
@@ -48,23 +48,30 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.use(express.json());
 //worked for backend with postman
-// app.use(
-//     cookieSession({
-//       signed: false,
-//       // secure: true,
-//       sameSite: "none",
-//     })
-//   );
-//
 
-app.use(
+if (process.env.NODE_ENV === "production"){
+  app.use(
+      cookieSession({
+        signed: false,
+        secure: true,
+        sameSite: "none",
+        domain:"demo2-backend.onrender.com", //frontend domain
+      })
+    );
+}else{
+  app.use(
     cookieSession({
       signed: false,
-      secure: true,
-      sameSite: "none",
-      domain:"demo1-backend.onrender.com",
+      // secure: true,
+      sameSite: "lax",
+      domain: "localhost", //frontend domain
     })
   );
+}
+  
+
+
+
 
   
 
@@ -113,10 +120,11 @@ app.use(errorHandler);
 const init = async()=>{
   try{
     await pool.connect({
-     connectionString:process.env.DBSTR,
-     ssl: {
-      rejectUnauthorized: false
-  }
+     host:process.env.DBHOST,
+     port:process.env.DBPORT,
+     database:process.env.DBNAME,
+     user:process.env.DBUSER,
+     password:process.env.DBPASSWORD
     });
     console.log("db successfully connected");
     app.listen(4000,()=>{
@@ -127,6 +135,29 @@ const init = async()=>{
     
   }  
 }
-init();
+
+const initProd = async () => {
+  try {
+    await pool.connect({
+      connectionString: process.env.DBSTR,
+      ssl: {
+        rejectUnauthorized: false,
+      },
+    });
+    console.log("db successfully connected");
+    app.listen(4000, () => {
+      console.log(`server started on 4000`);
+    });
+  } catch (err) {
+    console.error("db error", err);
+  }
+};
+
+if(process.env.NODE_ENV === "production "){
+  initProd();
+}else{
+  init();
+}
+
 
 

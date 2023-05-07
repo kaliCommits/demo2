@@ -1,7 +1,7 @@
 const CustomError = require("./CustomError");
 
 class NotAuthenticate extends CustomError {
-  statusCode = 200;
+  statusCode = 511;
   str;
   constructor(msg) {
     super(msg);

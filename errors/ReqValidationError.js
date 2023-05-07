@@ -1,7 +1,7 @@
 const CustomError = require("./CustomError");
 
 class ReqValidationError extends CustomError {
-  statusCode = 200;
+  statusCode = 400;
   errors;
   constructor(error) {
     super("Req parameter is not as expected");
