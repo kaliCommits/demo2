@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "in":"npm -g i cross-env",
     "start": "cross-env NODE_ENV=production node index",
     "dev": "node index"
   },
