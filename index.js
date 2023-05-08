@@ -45,7 +45,7 @@ allowUrl = allowUrl.split(";")[0];
 
 const corsOptions = {
   // origin: "https://drainagemonitor.herokuapp.com",
-  origin:allowUrl,
+  origin: "https://gleaming-tanuki-85d61c.netlify.app",
   credentials: true,
   optionsSuccessStatus: 200, // For legacy browser support
 };
@@ -62,7 +62,7 @@ if (process.env.NODE_ENV === "production"){
         signed: false,
         secure: true,
         sameSite: "none",
-        domain:process.env.FRONTEND_URL, //frontend domain
+        domain:process.env.allowUrl, //frontend domain
       })
     );
 }else{
