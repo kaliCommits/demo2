@@ -41,7 +41,8 @@ const penaltyAll = require("./routes/penalty/all");
 let allowUrl = process.env.NODE_ENV === "production"
       ? process.env.FRONTEND_URL
       : "http://localhost:3000";
-allowUrl = allowUrl.split(";")[0];
+
+const port = process.env.PORT || 4000;
 
 const corsOptions = {
   // origin: "https://drainagemonitor.herokuapp.com",
@@ -129,7 +130,7 @@ const init = async()=>{
      password:process.env.DBPASSWORD
     });
     console.log("db successfully connected");
-    app.listen(4000,()=>{
+    app.listen(port,()=>{
       console.log(`server started on 4000`);
     });
   }catch(err){
@@ -148,7 +149,7 @@ const initProd = async () => {
       },
     });
     console.log("db successfully connected");
-    app.listen(4000, () => {
+    app.listen(port, () => {
       console.log(`server started on 4000`);
     });
   } catch (err) {
