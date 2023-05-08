@@ -41,11 +41,11 @@ const penaltyAll = require("./routes/penalty/all");
 let allowUrl = process.env.NODE_ENV === "production"
       ? process.env.FRONTEND_URL
       : "http://localhost:3000";
-console.log(allowUrl);
+allowUrl = allowUrl.split(";")[0];
 
 const corsOptions = {
   // origin: "https://drainagemonitor.herokuapp.com",
-  origin:[allowUrl],
+  origin:allowUrl,
   credentials: true,
   optionsSuccessStatus: 200, // For legacy browser support
 };
