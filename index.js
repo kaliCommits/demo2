@@ -56,27 +56,26 @@ console.log(corsOptions);
 app.use(cors(corsOptions));
 app.use(express.json());
 //worked for backend with postman
+let cookieOptions = {};
 
 if (process.env.NODE_ENV === "production"){
-  app.use(
-      cookieSession({
-        signed: false,
-        secure: true,
-        sameSite: "none",
-        domain:process.env.allowUrl, //frontend domain
-      })
-    );
+  cookieOptions = {
+    signed: false,
+    secure: true,
+    sameSite: "none",
+    domain: process.env.allowUrl, //frontend domain
+  };
 }else{
-  app.use(
-    cookieSession({
-      signed: false,
-      // secure: true,
-      sameSite: "lax",
-      domain: "localhost", //frontend domain
-    })
-  );
+ cookieOptions = {
+   signed: false,
+   // secure: true,
+   sameSite: "lax",
+   domain: "localhost", //frontend domain
+ };
 }
-
+ app.use(
+   cookieSession(cookieOptions)
+ );
 
 //auth routes
 app.use(signin);
@@ -131,7 +130,7 @@ const init = async()=>{
     });
     console.log("db successfully connected");
     app.listen(port,()=>{
-      console.log(`server started on 4000`);
+      console.log(`server started on ${port}`);
     });
   }catch(err){
     console.error("db error",err);
@@ -150,7 +149,7 @@ const initProd = async () => {
     });
     console.log("db successfully connected");
     app.listen(port, () => {
-      console.log(`server started on 4000`);
+      console.log(`server started on ${port}`);
     });
   } catch (err) {
     console.error("db error", err);
