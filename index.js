@@ -58,23 +58,30 @@ app.use(express.json());
 //worked for backend with postman
 let cookieOptions = {};
 
-if (process.env.NODE_ENV === "production"){
-  cookieOptions = {
+// if (process.env.NODE_ENV === "production"){
+//   cookieOptions = {
+//     signed: false,
+//     secure: true,
+//     sameSite: "none",
+//     domain: allowUrl, //frontend domain
+//   };
+// }else{
+//  cookieOptions = {
+//    signed: false,
+//    // secure: true,
+//    sameSite: "lax",
+//    domain: "localhost", //frontend domain
+//  };
+// }
+console.log(cookieOptions);
+app.use(
+  cookieSession({
     signed: false,
     secure: true,
     sameSite: "none",
     domain: allowUrl, //frontend domain
-  };
-}else{
- cookieOptions = {
-   signed: false,
-   // secure: true,
-   sameSite: "lax",
-   domain: "localhost", //frontend domain
- };
-}
-console.log(cookieOptions);
-app.use(cookieSession(cookieOptions));
+  })
+);
 
 //auth routes
 app.use(signin);
