@@ -45,7 +45,7 @@ allowUrl = allowUrl.split(";")[0];
 
 const corsOptions = {
   // origin: "https://drainagemonitor.herokuapp.com",
-  origin: "https://gleaming-tanuki-85d61c.netlify.app",
+  origin: "https://gleaming-tanuki-85d61c.netlify.app/",
   credentials: true,
   optionsSuccessStatus: 200, // For legacy browser support
 };
