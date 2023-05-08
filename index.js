@@ -40,7 +40,7 @@ const penaltyAll = require("./routes/penalty/all");
 
 const corsOptions = {
     // origin: "https://drainagemonitor.herokuapp.com",
-    origin: process.env.NODE_ENV === "production"?"":"http://localhost:3000",
+    origin: process.env.NODE_ENV === "production"?process.env.FRONTEND_URL:"http://localhost:3000",
     credentials: true,
     optionsSuccessStatus: 200, // For legacy browser support
 };
@@ -55,7 +55,7 @@ if (process.env.NODE_ENV === "production"){
         signed: false,
         secure: true,
         sameSite: "none",
-        domain:"demo2-backend.onrender.com", //frontend domain
+        domain:process.env.FRONTEND_URL, //frontend domain
       })
     );
 }else{
