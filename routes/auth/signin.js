@@ -52,7 +52,8 @@ router.post("/api/v1/signin",[
         },
         process.env.JWT_SIGN_KEY
         );
-  
+        console.log("key", process.env.JWT_SIGN_KEY);
+        console.log(userJwt);
       //making jwt as session data
       req.session = {
         jwt: userJwt,
