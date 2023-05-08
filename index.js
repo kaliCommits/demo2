@@ -38,11 +38,16 @@ const penaltyDelete = require("./routes/penalty/delete");
 const penaltyActive = require("./routes/penalty/active");
 const penaltyAll = require("./routes/penalty/all");
 
+let allowUrl = process.env.NODE_ENV === "production"
+      ? process.env.FRONTEND_URL
+      : "http://localhost:3000";
+console.log(allowUrl);
+
 const corsOptions = {
-    // origin: "https://drainagemonitor.herokuapp.com",
-    origin: process.env.NODE_ENV === "production"?process.env.FRONTEND_URL:"http://localhost:3000",
-    credentials: true,
-    optionsSuccessStatus: 200, // For legacy browser support
+  // origin: "https://drainagemonitor.herokuapp.com",
+  origin:[allowUrl],
+  credentials: true,
+  optionsSuccessStatus: 200, // For legacy browser support
 };
 
 console.log(corsOptions);
