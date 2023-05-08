@@ -8,7 +8,7 @@ router.get(
   currentUserMid,
   // requireAuth,
   (req, res) => {
-    res.send(req.currentUser || null);
+    res.send(req.currentUser || {status:"success"});
   }
 );
 
