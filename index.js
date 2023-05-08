@@ -63,7 +63,7 @@ if (process.env.NODE_ENV === "production"){
     signed: false,
     secure: true,
     sameSite: "none",
-    domain: process.env.allowUrl, //frontend domain
+    domain: allowUrl, //frontend domain
   };
 }else{
  cookieOptions = {
