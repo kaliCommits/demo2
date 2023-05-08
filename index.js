@@ -44,6 +44,8 @@ const corsOptions = {
     credentials: true,
     optionsSuccessStatus: 200, // For legacy browser support
 };
+
+console.log(corsOptions);
   
 app.use(cors(corsOptions));
 app.use(express.json());
