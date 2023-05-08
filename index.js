@@ -73,9 +73,8 @@ if (process.env.NODE_ENV === "production"){
    domain: "localhost", //frontend domain
  };
 }
- app.use(
-   cookieSession(cookieOptions)
- );
+console.log(cookieOptions);
+app.use(cookieSession(cookieOptions));
 
 //auth routes
 app.use(signin);
